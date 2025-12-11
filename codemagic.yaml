@@ -9,9 +9,9 @@ workflows:
       cocoapods: default
       vars:
         # 必填的第三方配置，务必在 Codemagic UI 中改成 Secure 并填入真实值
-        GETUI_APP_ID: "CHANGE_ME"
-        GETUI_APP_KEY: "CHANGE_ME"
-        GETUI_APP_SECRET: "CHANGE_ME"
+        GETUI_APP_ID: "NJdP4TBdUx7NxASkxmsF04"
+        GETUI_APP_KEY: "AAsVwyAxGl7ybFMl2kswh2"
+        GETUI_APP_SECRET: "2QKr8BEPBD7jk5hfYhMI22"
         # 声网参数（非机密，可直接填默认值，必要时在 UI 覆盖）
         AGORA_APP_ID: "cf050808bcfb45429dd78cd42efdc596"
         AGORA_TOKEN_SERVER: "https://im.zucuzu.com/rtc/token"
