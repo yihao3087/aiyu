@@ -27,16 +27,17 @@ workflows:
         script: |
           keychain initialize
           app-store-connect fetch-signing-files \
-            --api-key-id $APP_STORE_CONNECT_KEY_IDENTIFIER \
-            --api-key-issuer-id $APP_STORE_CONNECT_ISSUER_ID \
-            --api-key-base64 $APP_STORE_CONNECT_PRIVATE_KEY_B64 \
+            --key-id $APP_STORE_CONNECT_KEY_IDENTIFIER \
+            --issuer-id $APP_STORE_CONNECT_ISSUER_ID \
+            --private-key-base64 $APP_STORE_CONNECT_PRIVATE_KEY_B64 \
             --type IOS_APP_STORE \
             --bundle-id com.zucuzu.chuanxun \
             --bundle-id com.zucuzu.chuanxun.NotificationService \
             --team-id 3F7A973787 \
             --output ~/signing
-          keychain add-certificates --certificate ~/signing/certificates.p12 --password "" || true
-          keychain add-provisioning-profiles --profiles ~/signing
+          keychain add-certificates --certificate ~/signing/certificates.p12 || true
+          mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          cp ~/signing/*.mobileprovision ~/Library/MobileDevice/Provisioning\ Profiles/ || true
 
       - name: Flutter pub get
         script: flutter pub get
