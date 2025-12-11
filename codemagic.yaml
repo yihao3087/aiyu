@@ -19,7 +19,7 @@ workflows:
         AMAP_WEB_KEY: "CHANGE_ME"
         # App Store Connect API Key（用于自动签名），在 Codemagic UI 中填入真实值并标记 Secure
         APP_STORE_CONNECT_ISSUER_ID: "CHANGE_ME"
-        APP_STORE_CONNECT_KEY_IDENTIFIER: "CHANGE_ME"
+        APP_STORE_CONNECT_KEY_IDENTIFIER: "9BFUCNXNY9"
         APP_STORE_CONNECT_PRIVATE_KEY: "CHANGE_ME" # 填写 p8 私钥内容，或在 UI 用 Encrypted 变量
     scripts:
       - name: Fetch signing files (App Store Connect API key)
@@ -32,7 +32,7 @@ workflows:
             --type IOS_APP_STORE \
             --bundle-id com.zucuzu.chuanxun \
             --bundle-id com.zucuzu.chuanxun.NotificationService \
-            --team-id V57RT7LMFH \
+            --team-id 3F7A973787 \
             --output ~/signing
           keychain add-certificates --file ~/signing/certificates.p12 --password "" || true
           keychain import-profiles --source ~/signing
