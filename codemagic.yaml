@@ -1,0 +1,41 @@
+workflows:
+  ios-release:
+    name: iOS Release (Codemagic)
+    instance_type: mac_mini_m1
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: 16.1
+      vars:
+        # 必填的第三方配置，放到 Codemagic UI 里标记为 secure
+        GETUI_APP_ID: ""
+        GETUI_APP_KEY: ""
+        GETUI_APP_SECRET: ""
+        AGORA_APP_ID: ""
+        AGORA_TOKEN_SERVER: ""
+        # 如有自定义高德 Key，可在这里覆写
+        AMAP_IOS_KEY: ""
+        AMAP_WEB_KEY: ""
+    scripts:
+      - name: Flutter pub get
+        script: flutter pub get
+
+      - name: Build IPA (automatic signing)
+        script: |
+          flutter build ipa --release \
+            --dart-define=GETUI_APP_ID=$GETUI_APP_ID \
+            --dart-define=GETUI_APP_KEY=$GETUI_APP_KEY \
+            --dart-define=GETUI_APP_SECRET=$GETUI_APP_SECRET \
+            --dart-define=AGORA_APP_ID=$AGORA_APP_ID \
+            --dart-define=AGORA_TOKEN_SERVER=$AGORA_TOKEN_SERVER \
+            --dart-define=AMAP_IOS_KEY=${AMAP_IOS_KEY:-c4a40ea3236ece1b8340ca157cc1f6c8} \
+            --dart-define=AMAP_WEB_KEY=${AMAP_WEB_KEY:-6f42b018aec35719738b2fade8996e55}
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - build/ios/archive/*.xcarchive
+
+    publishing:
+      app_store_connect:
+        # 使用 App Store Connect API Key（在 Codemagic UI 中配置）
+        submit_to_testflight: true

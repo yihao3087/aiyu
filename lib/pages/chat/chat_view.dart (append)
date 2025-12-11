@@ -1,0 +1,101 @@
+
+class _TelegramRichMediaView extends StatelessWidget {
+  const _TelegramRichMediaView({
+    required this.logic,
+    required this.message,
+    required this.text,
+    required this.media,
+  });
+
+  final ChatLogic logic;
+  final Message message;
+  final String text;
+  final List<Map<String, dynamic>> media;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasText = text.trim().isNotEmpty;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (hasText)
+          Text(
+            text.trim(),
+            style: Styles.ts_0C1C33_17sp,
+          ),
+        if (hasText && media.isNotEmpty) 8.verticalSpace,
+        if (media.isNotEmpty)
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: media.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: media.length == 1
+                  ? 1
+                  : media.length == 2
+                      ? 2
+                      : 3,
+              mainAxisSpacing: 8.h,
+              crossAxisSpacing: 8.w,
+              childAspectRatio: 1,
+            ),
+            itemBuilder: (context, index) {
+              final item = media[index];
+              final url = (item['thumbnail'] ?? item['url'] ?? '').toString();
+              final type = (item['type'] ?? '').toString().toLowerCase();
+              final isVideo = type.contains('video');
+              return GestureDetector(
+                onTap: () => logic.previewTelegramRichMedia(message, media, index),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8.r),
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      if (url.isNotEmpty)
+                        Image.network(
+                          url,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) => Container(
+                            color: Styles.c_F0F2F6,
+                            alignment: Alignment.center,
+                            child: const Icon(
+                              Icons.image_not_supported_outlined,
+                              color: Styles.c_8E9AB0,
+                            ),
+                          ),
+                        )
+                      else
+                        Container(
+                          color: Styles.c_F0F2F6,
+                          alignment: Alignment.center,
+                          child: const Icon(
+                            Icons.broken_image_outlined,
+                            color: Styles.c_8E9AB0,
+                          ),
+                        ),
+                      if (isVideo)
+                        Align(
+                          alignment: Alignment.center,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black.withValues(alpha: 0.4),
+                              shape: BoxShape.circle,
+                            ),
+                            padding: EdgeInsets.all(6.r),
+                            child: const Icon(
+                              Icons.play_arrow_rounded,
+                              color: Colors.white,
+                              size: 24,
+                            ),
+                          ),
+                        ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+      ],
+    );
+  }
+}

@@ -1,0 +1,15 @@
+﻿Analyzing aiyu...                                               
+
+warning - The value of the field '_isReceivedMessageWhenSyncing' isn't used - lib\pages\chat\chat_logic.dart:112:8 - unused_field
+   info - Empty catch block - lib\pages\chat\chat_logic.dart:262:19 - empty_catches
+warning - The operand can't be 'null', so the condition is always 'false' - lib\pages\chat\chat_logic.dart:548:18 - unnecessary_null_comparison
+warning - The operand can't be 'null', so the condition is always 'false' - lib\pages\chat\chat_logic.dart:597:31 - unnecessary_null_comparison
+warning - The '!' will have no effect because the receiver can't be null - lib\pages\chat\chat_logic.dart:651:50 - unnecessary_non_null_assertion
+warning - The operand can't be 'null', so the condition is always 'false' - lib\pages\chat\chat_logic.dart:1040:22 - unnecessary_null_comparison
+   info - 'canLaunch' is deprecated and shouldn't be used. Use canLaunchUrl instead - lib\pages\chat\chat_logic.dart:1838:15 - deprecated_member_use
+   info - 'launch' is deprecated and shouldn't be used. Use launchUrl instead - lib\pages\chat\chat_logic.dart:1839:13 - deprecated_member_use
+   info - 'resetConversationGroupAtType' is deprecated and shouldn't be used. use [setConversation] instead - lib\pages\chat\chat_logic.dart:2116:44 - deprecated_member_use
+   info - 'WillPopCallback' is deprecated and shouldn't be used. Use PopInvokedCallback instead. This feature was deprecated after v3.12.0-1.0.pre - lib\pages\chat\chat_logic.dart:2122:3 - deprecated_member_use
+   info - 'group' is deprecated and shouldn't be used. Use superGroup instead - lib\pages\chat\chat_logic.dart:2278:87 - deprecated_member_use
+   info - 'WillPopScope' is deprecated and shouldn't be used. Use PopScope instead. The Android predictive back feature will not work with WillPopScope. This feature was deprecated after v3.12.0-1.0.pre - lib\pages\chat\chat_view.dart:263:12 - deprecated_member_use
+

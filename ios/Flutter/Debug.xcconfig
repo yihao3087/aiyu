@@ -1,0 +1,5 @@
+AMAP_IOS_KEY = c4a40ea3236ece1b8340ca157cc1f6c8
+AMAP_WEB_KEY = 6f42b018aec35719738b2fade8996e55
+APS_ENVIRONMENT = development
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
+#include "Generated.xcconfig"

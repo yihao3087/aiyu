@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">爱语</string>
+    <string name="float_call_status">语音通话中</string>
+    <string name="float_call_back">返回</string>
+</resources>
+
