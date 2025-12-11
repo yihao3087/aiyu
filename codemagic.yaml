@@ -12,11 +12,12 @@ workflows:
         GETUI_APP_ID: "CHANGE_ME"
         GETUI_APP_KEY: "CHANGE_ME"
         GETUI_APP_SECRET: "CHANGE_ME"
-        AGORA_APP_ID: "CHANGE_ME"
-        AGORA_TOKEN_SERVER: "CHANGE_ME"
-        # 如需自定义高德 Key，可覆写；不改则使用脚本中的默认值
-        AMAP_IOS_KEY: "CHANGE_ME"
-        AMAP_WEB_KEY: "CHANGE_ME"
+        # 声网参数（非机密，可直接填默认值，必要时在 UI 覆盖）
+        AGORA_APP_ID: "cf050808bcfb45429dd78cd42efdc596"
+        AGORA_TOKEN_SERVER: "https://im.zucuzu.com/rtc/token"
+        # 高德 Key（已知默认值，可在 UI 覆盖）
+        AMAP_IOS_KEY: "c4a40ea3236ece1b8340ca157cc1f6c8"
+        AMAP_WEB_KEY: "6f42b018aec35719738b2fade8996e55"
         # App Store Connect API Key（用于自动签名），在 Codemagic UI 中填入真实值并标记 Secure
         APP_STORE_CONNECT_ISSUER_ID: "CHANGE_ME"
         APP_STORE_CONNECT_KEY_IDENTIFIER: "9BFUCNXNY9"
