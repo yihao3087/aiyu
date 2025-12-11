@@ -6,6 +6,7 @@ workflows:
     environment:
       flutter: stable
       xcode: 16.1
+      cocoapods: default
       vars:
         # 必填的第三方配置，务必在 Codemagic UI 中改成 Secure 并填入真实值
         GETUI_APP_ID: "CHANGE_ME"
@@ -16,7 +17,26 @@ workflows:
         # 如需自定义高德 Key，可覆写；不改则使用脚本中的默认值
         AMAP_IOS_KEY: "CHANGE_ME"
         AMAP_WEB_KEY: "CHANGE_ME"
+        # App Store Connect API Key（用于自动签名），在 Codemagic UI 中填入真实值并标记 Secure
+        APP_STORE_CONNECT_ISSUER_ID: "CHANGE_ME"
+        APP_STORE_CONNECT_KEY_IDENTIFIER: "CHANGE_ME"
+        APP_STORE_CONNECT_PRIVATE_KEY: "CHANGE_ME" # 填写 p8 私钥内容，或在 UI 用 Encrypted 变量
     scripts:
+      - name: Fetch signing files (App Store Connect API key)
+        script: |
+          keychain initialize
+          app-store-connect fetch-signing-files \
+            --api-key-id $APP_STORE_CONNECT_KEY_IDENTIFIER \
+            --api-key-issuer-id $APP_STORE_CONNECT_ISSUER_ID \
+            --api-key "$APP_STORE_CONNECT_PRIVATE_KEY" \
+            --type IOS_APP_STORE \
+            --bundle-id com.zucuzu.chuanxun \
+            --bundle-id com.zucuzu.chuanxun.NotificationService \
+            --team-id V57RT7LMFH \
+            --output ~/signing
+          keychain add-certificates --file ~/signing/certificates.p12 --password "" || true
+          keychain import-profiles --source ~/signing
+
       - name: Flutter pub get
         script: flutter pub get
 
